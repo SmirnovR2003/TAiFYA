@@ -1,0 +1,12 @@
+digraph {
+  "q0/y1" -> "q1/y1" [ label = "x0" ];
+  "q1/y1" -> "q4/y3" [ label = "x0" ];
+  "q2/y3" -> "q4/y3" [ label = "x0" ];
+  "q3/y2" -> "q2/y3" [ label = "x0" ];
+  "q4/y3" -> "q2/y3" [ label = "x0" ];
+  "q0/y1" -> "q3/y2" [ label = "x1" ];
+  "q1/y1" -> "q1/y1" [ label = "x1" ];
+  "q2/y3" -> "q1/y1" [ label = "x1" ];
+  "q3/y2" -> "q0/y1" [ label = "x1" ];
+  "q4/y3" -> "q0/y1" [ label = "x1" ];
+}
