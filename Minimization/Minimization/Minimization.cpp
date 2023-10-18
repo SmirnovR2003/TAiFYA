@@ -171,6 +171,7 @@ vector<pair<int, int>>GetCol(Minimiz& minimiz, int colNumber)
             if (col.first == colNumber) return col.second;
         }
     }
+    return {};
 }
 
 Minimiz Split(Minimiz& minimiz)
@@ -205,7 +206,7 @@ Minimiz Split(Minimiz& minimiz)
     return newMinimiz;
 }
 
-Minimiz Minimization(Minimiz minimiz)
+Minimiz Minimization(Minimiz& minimiz)
 {
     Minimiz newMinimiz{};
     for (auto& section : minimiz)
@@ -282,34 +283,71 @@ void MinimizationMily(Mily& mily)
     /*
     typedef vector<vector<pair<int, int>>> Mily;
 
-     typedef map<int, map<int, vector<pair<int, int>>>> Minimiz;*/
-
-
+    typedef map<int, map<int, vector<pair<int, int>>>> Minimiz;
+    */
     Minimiz minimiz;
-
     map<vector<int>, vector <int>> uniqueSignals;
-    vector<int> colSignals;
 
+
+    //группируем по сигналам
     int i = 0;
-    for (auto& col : mily)
+    /*for (auto& col : mily)
     {
+        vector<int> colSignals;
         for (auto& c : col)
         {
             colSignals.push_back(c.second);
         }
         uniqueSignals[colSignals].push_back(i++);
-    }
+    }*/
 
-    for (auto& sec : uniqueSignals)
+    for (int i = 0; i < mily[0].size(); i++)
     {
+        vector<int> colSignals;
+        for (int k = 0; k < mily.size(); k++)
+        {
+            colSignals.push_back(mily[k][i].second);
 
+        }
+        uniqueSignals[colSignals].push_back(i);
     }
 
+    i = 0;
+    for (auto& section : uniqueSignals)
+    {
+        map<int, vector<pair<int, int>>> cols;
+        for (auto col : section.second)
+        {
+            for (int k = 0; k < mily.size(); k++)
+            {
+                cols[col].push_back({ 0, mily[k][col].first });
+            }
+        }
+        minimiz[i++] = cols;
+    }
+
+    minimiz = Minimization(minimiz);
+
+
+    Mily newMily;
+    newMily.resize(mily.size());
+    for (auto& section : minimiz)
+    {
+        auto& col = *section.second.begin();
+        int i = 0;
+        for (auto& c : col.second)
+        {
+            newMily[i].push_back({ c.first, mily[i][col.first].second });
+            i++;
+        }
+
+    }
+    mily = newMily;
 }
 
 int main(int argc, char* argv[])
 {
-    ifstream inp("MurWithoutMin.txt");
+    ifstream inp("mealy.txt");
     ofstream outDot("out.dot");
     ofstream out("out.txt");
 
@@ -322,6 +360,7 @@ int main(int argc, char* argv[])
     if (type == 1)
     {
         ReadMilyGraph(inp, n, m, mily);
+        MinimizationMily(mily);
         WriteMily(outDot, out, mily);
     }
     else
@@ -333,6 +372,6 @@ int main(int argc, char* argv[])
 
     outDot.close();
 
-    system("C:/roman/ТАиФЯ/Graphviz/bin/dot.exe out.dot -Tpng -oout.png");
+    system("C:/roman/C++/TAiFYA/Graphviz/bin/dot.exe out.dot -Tpng -oout.png");
     system("out.png");
 }

@@ -1,14 +1,20 @@
 digraph {
-  "q0/y0" -> "q1/y1" [ label = "x0" ];
-  "q1/y1" -> "q0/y0" [ label = "x0" ];
-  "q2/y2" -> "q2/y2" [ label = "x0" ];
-  "q3/y3" -> "q3/y3" [ label = "x0" ];
-  "q0/y0" -> "q2/y2" [ label = "x1" ];
-  "q1/y1" -> "q0/y0" [ label = "x1" ];
-  "q2/y2" -> "q0/y0" [ label = "x1" ];
-  "q3/y3" -> "q3/y3" [ label = "x1" ];
-  "q0/y0" -> "q2/y2" [ label = "x2" ];
-  "q1/y1" -> "q1/y1" [ label = "x2" ];
-  "q2/y2" -> "q3/y3" [ label = "x2" ];
-  "q3/y3" -> "q1/y1" [ label = "x2" ];
+  "s0" -> "s3" [ label = "x0/y0" ];
+  "s1" -> "s3" [ label = "x0/y0" ];
+  "s2" -> "s5" [ label = "x0/y0" ];
+  "s3" -> "s0" [ label = "x0/y1" ];
+  "s4" -> "s0" [ label = "x0/y1" ];
+  "s5" -> "s1" [ label = "x0/y1" ];
+  "s0" -> "s0" [ label = "x1/y1" ];
+  "s1" -> "s2" [ label = "x1/y1" ];
+  "s2" -> "s2" [ label = "x1/y1" ];
+  "s3" -> "s0" [ label = "x1/y0" ];
+  "s4" -> "s1" [ label = "x1/y0" ];
+  "s5" -> "s0" [ label = "x1/y1" ];
+  "s0" -> "s0" [ label = "x2/y1" ];
+  "s1" -> "s1" [ label = "x2/y1" ];
+  "s2" -> "s5" [ label = "x2/y1" ];
+  "s3" -> "s5" [ label = "x2/y0" ];
+  "s4" -> "s5" [ label = "x2/y0" ];
+  "s5" -> "s4" [ label = "x2/y0" ];
 }

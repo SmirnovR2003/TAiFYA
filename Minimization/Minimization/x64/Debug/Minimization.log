@@ -1,3 +1,2 @@
 ﻿  Minimization.cpp
-C:\roman\ТАиФЯ\Minimization\Minimization\Minimization.cpp(174): warning C4715: GetCol: значение возвращается не при всех путях выполнения
-  Minimization.vcxproj -> C:\roman\ТАиФЯ\Minimization\x64\Debug\Minimization.exe
+  Minimization.vcxproj -> C:\roman\C++\TAiFYA\Minimization\x64\Debug\Minimization.exe
